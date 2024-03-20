@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse String</title>
+  </head>
+  <body>
+    <h1>Reverse a string</h1>
+
+    <form id="reverseForm">
+      <label for="inputString">Reverse a String</label>
+      <br />
+      <input type="text" id="inputString" />
+      <br />
+      <button type="submit">Reverse</button>
+    </form>
+    <div id="reversedOutput"></div>
+    <script>
+      // Defines a function to reverse a given string.
+      function reverseString(str) {
+        // Splits the input string into an array of individual characters.
+        let arr = str.split("");
+
+        // Reverses the order of elements in the array.
+        arr.reverse();
+
+        // Joins the elements of the array back into a single string.
+        return arr.join("");
+      }
+
+      // Adds an event listener to the form with the id 'reverseForm'.
+      // This event listener triggers when the form is submitted.
+      // Accesses the HTML element with the id 'reverseForm'.
+      document
+        .getElementById("reverseForm")
+        // Adds an event listener to that element.
+        .addEventListener("submit", function (event) {
+          // This function will be executed when the 'submit' event occurs on the 'reverseForm' element.
+          // The 'event' parameter represents the event object that contains all the information about the event that occurred.
+
+          // Prevents the default form submission behavior to stop the page from reloading
+          event.preventDefault();
+
+          // Retrieves the string entered by the user in the input field with the id 'inputString'.
+          let inputString = document.getElementById("inputString").value;
+
+          // Calls the reverseString function with the user-entered string and stores the result.
+          let reversedString = reverseString(inputString);
+
+          // Finds the element with the id 'reversedOutput' and sets its text content
+          // to the reversed string, effectively displaying the result on the page.
+          document.getElementById("reversedOutput").innerText = reversedString;
+        });
+    </script>
+  </body>
+</html>

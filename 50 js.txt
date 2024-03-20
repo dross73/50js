@@ -1,0 +1,858 @@
+//Reverse a String
+function reverseString(str) {
+    // Split the string into an array of characters
+    let arr = str.split('');
+    
+    // Reverse the array
+    arr.reverse();
+    
+    // Join the array back into a string
+    return arr.join('');
+}
+
+console.log(reverseString("hello"));  // Outputs: "olleh"
+
+
+
+
+//Factorialize a Number
+function factorialize(num) {
+    if (num === 0) return 1;  // base case
+    return num * factorialize(num - 1);  // recursive case
+}
+
+console.log(factorialize(5));  // Outputs: 120
+
+
+
+
+//Check for Palindromes
+function isPalindrome(str) {
+    // Remove non-alphanumeric characters and convert to lowercase
+    let cleanedStr = str.replace(/[\W_]/g, '').toLowerCase();
+    
+    // Check if cleaned string equals its reverse
+    return cleanedStr === cleanedStr.split('').reverse().join('');
+}
+
+console.log(isPalindrome("A man, a plan, a canal, Panama"));  // Outputs: true
+
+
+
+
+//Find the Longest Word in a String
+function findLongestWord(str) {
+    // Split the string into words and find the length of the longest word
+    return str.split(' ').reduce((max, word) => Math.max(max, word.length), 0);
+}
+
+console.log(findLongestWord("The quick brown fox jumped over the lazy dog"));  // Outputs: 6
+
+
+
+
+
+//Title Case a Sentence
+function titleCase(str) {
+    // Convert the first character of each word to uppercase
+    return str.toLowerCase().replace(/(^|\s)\S/g, (L) => L.toUpperCase());
+}
+
+console.log(titleCase("I'm a little tea pot"));  // Outputs: "I'm A Little Tea Pot"
+
+
+
+
+
+//Return Largest Numbers in Arrays
+function largestOfFour(arr) {
+    // Map over the array of arrays, finding the maximum of each sub-array
+    return arr.map((group) => Math.max(...group));
+}
+
+console.log(largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]));  // Outputs: [ 5, 27, 39, 1001 ]
+
+
+
+
+
+//Confirm the Ending
+function confirmEnding(str, target) {
+    // Check if the end of the string is the same as the target
+    return str.slice(-target.length) === target;
+}
+
+console.log(confirmEnding("Bastian", "n"));  // Outputs: true
+
+
+
+
+//Repeat a String
+function repeatStringNumTimes(str, num) {
+    // Repeat the string for a given number of times
+    return num > 0 ? str.repeat(num) : '';
+}
+
+console.log(repeatStringNumTimes("abc", 3));  // Outputs: "abcabcabc"
+
+
+
+
+
+//Truncate a String
+function truncateString(str, num) {
+    // Truncate the string at the given length and append '...'
+    return str.length > num ? str.slice(0, num) + '...' : str;
+}
+
+console.log(truncateString("A-tisket a-tasket A green and yellow basket", 8));  // Outputs: "A-tisket..."
+
+
+
+
+
+//Finders Keepers
+function findElement(arr, func) {
+    // Find the first element in the array that passes a test
+    return arr.find(func);
+}
+
+console.log(findElement([1, 2, 3, 4], num => num % 2 === 0));  // Outputs: 2
+
+
+
+
+
+//Falsy Bouncer
+function bouncer(arr) {
+    // Remove all falsy values from the array
+    return arr.filter(Boolean);
+}
+
+console.log(bouncer([7, "ate", "", false, 9]));  // Outputs: [7, "ate", 9]
+
+
+
+
+
+//Where Do I Belong
+function getIndexToIns(arr, num) {
+    // Find the correct index where the number should be inserted
+    arr.push(num);
+    arr.sort((a, b) => a - b);
+    return arr.indexOf(num);
+}
+
+console.log(getIndexToIns([40, 60], 50));  // Outputs: 1
+
+
+
+
+
+//Mutations
+function mutation(arr) {
+    // Check if all characters from the second string are in the first string
+    return [...arr[1].toLowerCase()].every(char => arr[0].toLowerCase().includes(char));
+}
+
+console.log(mutation(["hello", "hey"]));  // Outputs: false
+
+
+
+
+
+//Chunky Monkey
+function chunkArrayInGroups(arr, size) {
+    // Split an array into groups of the specified size
+    let result = [];
+    while (arr.length) {
+        result.push(arr.splice(0, size));
+    }
+    return result;
+}
+
+console.log(chunkArrayInGroups(["a", "b", "c", "d"], 2));  // Outputs: [["a", "b"], ["c", "d"]]
+
+
+
+
+
+//Slasher Flick
+function slasher(arr, howMany) {
+    // Return the remaining elements of an array after chopping off the first `howMany` elements
+    return arr.slice(howMany);
+}
+
+console.log(slasher([1, 2, 3], 2));  // Outputs: [3]
+
+
+
+
+
+//Seek and Destroy
+function destroyer(arr, ...valuesToDestroy) {
+    // Remove all values from the array that match the other arguments
+    return arr.filter(item => !valuesToDestroy.includes(item));
+}
+
+console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3));  // Outputs: [1, 1]
+
+
+
+
+
+//Wherefore Art Thou
+function whatIsInAName(collection, source) {
+    let sourceKeys = Object.keys(source);
+    // Filter the collection array based on the source object
+    return collection.filter(obj => sourceKeys.every(key => obj[key] === source[key]));
+}
+
+console.log(whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }));  // Outputs: [{ first: "Tybalt", last: "Capulet" }]
+
+
+
+
+
+//Spinal Tap Case
+function spinalCase(str) {
+    // Convert a string to spinal case (all-lowercase-words-joined-by-dashes)
+    return str.replace(/([a-z])([A-Z])/g, '$1 $2')
+              .replace(/\s+|_+/g, '-')
+              .toLowerCase();
+}
+
+console.log(spinalCase('This Is Spinal Tap'));  // Outputs: "this-is-spinal-tap"
+
+
+
+
+
+//Pig Latin
+function translatePigLatin(str) {
+    // Convert a string to pig latin
+    if (str.match(/^[aeiou]/)) return str + "way";
+    const consonantCluster = str.match(/^[^aeiou]+/)[0];
+    return str.substring(consonantCluster.length) + consonantCluster + "ay";
+}
+
+console.log(translatePigLatin("consonant"));  // Outputs: "onsonantcay"
+
+
+
+
+
+//Search and Replace
+function myReplace(str, before, after) {
+    // Replace a word in a string, preserving the case
+    if (/[A-Z]/.test(before[0])) {
+        after = after.charAt(0).toUpperCase() + after.slice(1);
+    }
+    return str.replace(before, after);
+}
+
+console.log(myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped"));  // Outputs: "A quick brown fox leaped over the lazy dog"
+
+
+
+
+
+//DNA Pairing
+function pairElement(str) {
+    // Return the provided DNA strand as matched pairs
+    const pairs = {
+        A: "T",
+        T: "A",
+        C: "G",
+        G: "C"
+    };
+    return str.split('').map(char => [char, pairs[char]]);
+}
+
+console.log(pairElement("GCG"));  // Outputs: [["G", "C"], ["C", "G"], ["G", "C"]]
+
+
+
+
+
+//Missing Letters
+function missingLetters(str) {
+    // Find the missing letter in a range and return it
+    for (let i = 0; i < str.length - 1; i++) {
+        if (str.charCodeAt(i + 1) - str.charCodeAt(i) > 1) {
+            return String.fromCharCode(str.charCodeAt(i) + 1);
+        }
+    }
+    return undefined;
+}
+
+console.log(missingLetters("abce"));  // Outputs: "d"
+
+
+
+
+
+//Sorted Union
+function uniteUnique(...arrays) {
+    // Merge multiple arrays, removing duplicates
+    return [...new Set([].concat(...arrays))];
+}
+
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));  // Outputs: [1, 3, 2, 5, 4]
+
+
+
+
+
+//Convert HTML Entities
+function convertHTML(str) {
+    // Convert specific characters to their HTML entity representations
+    const htmlEntities = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        '\'': '&apos;'
+    };
+    return str.replace(/&|<|>|"|'/g, match => htmlEntities[match]);
+}
+
+console.log(convertHTML("Dolce & Gabbana"));  // Outputs: "Dolce &amp; Gabbana"
+
+
+
+
+
+//Sum All Odd Fibonacci Numbers
+function sumFibs(num) {
+    let prevNumber = 0;
+    let currNumber = 1;
+    let result = 0;
+    while (currNumber <= num) {
+        if (currNumber % 2 !== 0) {
+            result += currNumber;
+        }
+        currNumber += prevNumber;
+        prevNumber = currNumber - prevNumber;
+    }
+    return result;
+}
+
+console.log(sumFibs(10));  // Outputs: 10
+
+
+
+
+
+//Sum All Primes
+function sumPrimes(num) {
+    // Check if a number is prime
+    function isPrime(value) {
+        for (let i = 2; i <= Math.sqrt(value); i++) {
+            if (value % i === 0) return false;
+        }
+        return value !== 1;
+    }
+    // Sum all prime numbers up to and including num
+    return Array.from({length: num + 1}, (_, i) => i)
+                .filter(isPrime)
+                .reduce((sum, curr) => sum + curr, 0);
+}
+
+console.log(sumPrimes(10));  // Outputs: 17
+
+
+
+
+
+//Smallest Common Multiple
+function smallestCommons(arr) {
+    // Get the range of numbers between the two array values
+    const [min, max] = arr.sort((a, b) => a - b);
+    const range = Array.from({ length: max - min + 1 }, (_, i) => i + min);
+
+    // Calculate the least common multiple (LCM) of two numbers
+    const gcd = (a, b) => (b === 0) ? a : gcd(b, a % b);
+    const lcm = (a, b) => (a * b) / gcd(a, b);
+
+    // Compute the LCM for the range
+    return range.reduce((multiple, curr) => lcm(multiple, curr));
+}
+
+console.log(smallestCommons([1, 5]));  // Outputs: 60
+
+
+
+
+
+//Drop It
+function dropElements(arr, func) {
+    // Drop the elements of an array, starting from the front, until the function returns true
+    while (arr.length && !func(arr[0])) arr.shift();
+    return arr;
+}
+
+console.log(dropElements([1, 2, 3, 4], function(n) { return n >= 3; }));  // Outputs: [3, 4]
+
+
+
+
+
+//Steamroller
+function steamrollArray(arr) {
+    // Flatten a nested array
+    const flattened = [];
+    for (let item of arr) {
+        if (Array.isArray(item)) {
+            flattened.push(...steamrollArray(item));
+        } else {
+            flattened.push(item);
+        }
+    }
+    return flattened;
+}
+
+console.log(steamrollArray([1, [2], [3, [[4]]]]));  // Outputs: [1, 2, 3, 4]
+
+
+
+
+
+//Binary Agents
+function binaryAgent(str) {
+    // Convert a binary string to an English sentence
+    return str.split(' ')
+              .map(bin => String.fromCharCode(parseInt(bin, 2)))
+              .join('');
+}
+
+console.log(binaryAgent("01001001 00100000 01101100 01101111 01110110 01100101 00100000 01001010 01100001 01110110 01100001 01010011 01100011 01110010 01101001 01110000 01110100"));  // Outputs: "I love JavaScript"
+
+
+
+
+
+//Everything Be True
+function truthCheck(collection, pre) {
+    // Check if a predicate (second argument) is truthy on all elements of a collection (first argument)
+    return collection.every(obj => Boolean(obj[pre]));
+}
+
+console.log(truthCheck([{ "user": "Tinky-Winky", "sex": "male" }, { "user": "Dipsy", "sex": "male" }, { "user": "Laa-Laa", "sex": "female" }, { "user": "Po", "sex": "female" }], "sex"));  // Outputs: true
+
+
+
+
+
+//Arguments Optional
+function addTogether() {
+    const [first, second] = arguments;
+
+    // Check if a number is actually a number
+    if (typeof first !== 'number' || (second !== undefined && typeof second !== 'number')) {
+        return undefined;
+    }
+
+    if (second !== undefined) {
+        return first + second;
+    } else {
+        return function(num) {
+            return typeof num === 'number' ? first + num : undefined;
+        };
+    }
+}
+
+console.log(addTogether(2)(3));  // Outputs: 5
+
+
+
+
+
+//Make a Person
+function Person(name) {
+    let fullName = name;
+
+    this.getFirstName = function() {
+        return fullName.split(" ")[0];
+    };
+
+    this.getLastName = function() {
+        return fullName.split(" ")[1];
+    };
+
+    this.getFullName = function() {
+        return fullName;
+    };
+
+    this.setFirstName = function(name) {
+        fullName = name + " " + fullName.split(" ")[1];
+    };
+
+    this.setLastName = function(name) {
+        fullName = fullName.split(" ")[0] + " " + name;
+    };
+
+    this.setFullName = function(name) {
+        fullName = name;
+    };
+}
+
+const bob = new Person('Bob Ross');
+console.log(bob.getFullName());  // Outputs: "Bob Ross"
+
+
+
+
+//Map the Debris
+function orbitalPeriod(arr) {
+    const GM = 398600.4418;
+    const earthRadius = 6367.4447;
+
+    return arr.map(obj => {
+        const T = Math.round(2 * Math.PI * Math.sqrt(Math.pow(earthRadius + obj.avgAlt, 3) / GM));
+        return { name: obj.name, orbitalPeriod: T };
+    });
+}
+
+console.log(orbitalPeriod([{name: "sputnik", avgAlt: 35873.5553}]));  // Outputs: [{name: "sputnik", orbitalPeriod: 86400}]
+
+
+
+
+
+//Pairwise
+function pairwise(arr, arg) {
+    let indexUsed = [];
+    return arr.reduce((acc, current, index) => {
+        for (let i = index + 1; i < arr.length; i++) {
+            if (current + arr[i] === arg && !indexUsed.includes(index) && !indexUsed.includes(i)) {
+                indexUsed.push(index, i);
+                return acc + index + i;
+            }
+        }
+        return acc;
+    }, 0);
+}
+
+console.log(pairwise([1, 4, 2, 3, 0, 5], 7));  // Outputs: 11
+
+
+
+
+
+//Validate US Telephone Numbers
+function telephoneCheck(str) {
+    const pattern = /^(1\s?)?(\(\d{3}\)|\d{3})([\s\-]?)\d{3}([\s\-]?)\d{4}$/;
+    return pattern.test(str);
+}
+
+console.log(telephoneCheck("555-555-5555"));  // Outputs: true
+
+
+
+
+
+//Record Collection - This is a task to create a function that can update an existing record collection based on certain conditions.
+// Provided collection of records
+let collection = {
+    "2548": { "album": "Slippery When Wet", "artist": "Bon Jovi", "tracks": [ "Let It Rock", "You Give Love a Bad Name" ] },
+    // ... (more records)
+};
+
+function updateRecords(id, prop, value) {
+    // If value is empty, delete the property
+    if (value === "") delete collection[id][prop];
+    // If prop is "tracks", add the value to the tracks array
+    else if (prop === "tracks") {
+        collection[id][prop] = collection[id][prop] || [];
+        collection[id][prop].push(value);
+    } else {
+        // For other properties, update or set the value
+        collection[id][prop] = value;
+    }
+
+    return collection;
+}
+
+console.log(updateRecords(2548, "artist", "Bon Jovi"));  // Updates the artist for the record with the id of 2548
+
+
+
+
+
+
+//Symmetric Difference - This challenge is about creating a function that finds the symmetric difference between two or more arrays.
+function sym(...args) {
+    // Helper function to find the difference between two arrays
+    function diff(arr1, arr2) {
+        return arr1
+            .filter(item => !arr2.includes(item))
+            .concat(arr2.filter(item => !arr1.includes(item)));
+    }
+
+    // Reduce all input arrays to a single array containing the symmetric difference
+    return [...args.reduce(diff)].sort();
+}
+
+console.log(sym([1, 2, 3], [5, 2, 1, 4]));  // Outputs: [3, 4, 5]
+
+
+
+
+
+
+//Inventory Update - This task is about creating a function that updates an inventory based on a new shipment.
+function updateInventory(arr1, arr2) {
+    for (let item of arr2) {
+        // Check if the item is already in the inventory
+        const index = arr1.findIndex(e => e[1] === item[1]);
+        // If not, add the item
+        if (index === -1) {
+            arr1.push(item);
+        } else {
+            // If yes, update the quantity
+            arr1[index][0] += item[0];
+        }
+    }
+
+    // Sort the inventory by item names
+    return arr1.sort((a, b) => a[1].localeCompare(b[1]));
+}
+
+console.log(updateInventory([[21, "Bowling Ball"], [2, "Dirty Sock"], [1, "Hair Pin"], [5, "Microphone"]], [[2, "Hair Pin"], [3, "Half-Eaten Apple"], [67, "Bowling Ball"], [7, "Toothpaste"]]));  // Outputs the updated inventory array
+
+
+
+//No Repeats Please - This task challenges you to return the number of total permutations of the provided string that don't have consecutive repeating characters.
+
+function permAlone(str) {
+    let count = 0;
+
+    // Base case: if string length is 1
+    if (str.length === 1) return 1;
+
+    // Swap function to swap two characters in a string
+    const swap = (a, b, arr) => {
+        const tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
+    };
+
+   function permAlone(str) {
+    let count = 0;
+
+    // Helper function to swap two characters in an array
+    const swap = (a, b, arr) => {
+        const tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
+    };
+
+    // Helper function to generate permutations
+    const generatePermutations = (n, arr) => {
+        if (n === 1 && !(/(.)\1/).test(arr.join(''))) {
+            count++;
+        } else {
+            for (let i = 0; i < n; i++) {
+                generatePermutations(n - 1, arr);
+                swap(n % 2 ? 0 : i, n - 1, arr);
+            }
+        }
+    };
+
+    generatePermutations(str.length, str.split(''));
+    return count;
+}
+
+console.log(permAlone("aab"));  // Outputs: 2
+}
+
+
+
+//Friendly Date Ranges - Format a date range into a human-readable string.
+
+function makeFriendlyDates(arr) {
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    // Helper function to extract date parts
+    const parseDate = (str) => ({
+        year: parseInt(str.split('-')[0]),
+        month: parseInt(str.split('-')[1]),
+        day: parseInt(str.split('-')[2])
+    });
+
+    // ... (continue implementation based on various date comparison scenarios)
+
+    return arr;  // Replace with formatted date range string
+}
+
+console.log(makeFriendlyDates(["2016-07-01", "2016-07-04"]));  // Example output: ["July 1st","4th"]
+
+
+
+//Exact Change - Write a function to check if you can give exact change from the cash in the drawer.
+
+function checkCashRegister(price, cash, cid) {
+    // ... (initialize variables)
+
+    // Helper function to compute change
+    const computeChange = (changeNeeded, cashAvailable) => {
+        // ... (implementation details)
+    };
+
+    const result = computeChange(change, cid);
+    if (result) {
+        return result;
+    } else {
+        return "Insufficient Funds";
+    }
+}
+
+console.log(checkCashRegister(19.50, 20.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]));  // Example output: [["QUARTER", 0.50]]
+
+
+
+
+
+//Update Inventory - Write a function to update the inventory of items.
+function updateInventory(curInv, newInv) {
+    // Merge current inventory with new inventory
+    for (let newItem of newInv) {
+        let found = false;
+        for (let curItem of curInv) {
+            if (newItem[1] === curItem[1]) {
+                curItem[0] += newItem[0];
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            curInv.push(newItem);
+        }
+    }
+    return curInv.sort((a, b) => a[1].localeCompare(b[1]));
+}
+
+// Example usage
+console.log(updateInventory([[21, "Bowling Ball"], [2, "Dirty Sock"], [1, "Hair Pin"], [5, "Microphone"]], [[2, "Hair Pin"], [3, "Half-Eaten Apple"], [67, "Bowling Ball"], [7, "Toothpaste"]]));  // Outputs updated inventory list
+
+
+
+
+
+//Boo Who - Write a function to check if the value is a Boolean primitive.
+function booWho(bool) {
+    return typeof bool === 'boolean';
+}
+
+console.log(booWho(null));  // Outputs: false
+
+
+
+
+
+//Sorted Union (Advanced) - An advanced take on the earlier problem to merge arrays while filtering out duplicates without using the Set data structure.
+function uniteUnique(...arrays) {
+    return arrays.reduce((accumulator, currentArray) => {
+        // For each number in the current array, add it to the accumulator if not already present
+        currentArray.forEach(num => {
+            if (accumulator.indexOf(num) === -1) {
+                accumulator.push(num);
+            }
+        });
+        return accumulator;
+    }, []);
+}
+
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));  // Outputs: [1, 3, 2, 5, 4]
+
+
+
+
+
+//Convert a String to Spinal Case - Another approach to the spinal case problem using a combination of split and join.
+function spinalCase(str) {
+    // Replace all underscore and spaces with a dash and then convert to lowercase
+    return str.split(/\s|_|(?=[A-Z])/).join('-').toLowerCase();
+}
+
+console.log(spinalCase('This Is Spinal Tap'));  // Outputs: "this-is-spinal-tap"
+
+
+
+
+
+//Pig Latin (Advanced) - An advanced solution that handles edge cases for Pig Latin conversion.
+function translatePigLatin(str) {
+    if (str.match(/^[aeiou]/)) return str + "way";
+
+    // Capture consonant clusters
+    const consonantCluster = str.match(/^[^aeiou]+/)[0];
+    
+    // Move consonant cluster to the end and append "ay"
+    return str.slice(consonantCluster.length) + consonantCluster + "ay";
+}
+
+console.log(translatePigLatin("glove"));  // Outputs: "oveglay"
+
+
+
+
+
+//Search and Replace (Advanced) - This function replaces a word while considering the case of the first letter of the original word.
+function myReplace(str, before, after) {
+    if (/^[A-Z]/.test(before)) {
+        // Convert the first letter of 'after' to uppercase
+        after = after.charAt(0).toUpperCase() + after.slice(1);
+    }
+    // Replace 'before' with 'after' in 'str'
+    return str.replace(before, after);
+}
+
+console.log(myReplace("He is Sleeping on the couch", "Sleeping", "sitting"));  // Outputs: "He is Sitting on the couch"
+
+
+
+
+
+//Roman Numeral Converter - This function converts a given number into a roman numeral.
+function convertToRoman(num) {
+    const romanNumerals = {
+        M: 1000,
+        CM: 900,
+        D: 500,
+        CD: 400,
+        C: 100,
+        XC: 90,
+        L: 50,
+        XL: 40,
+        X: 10,
+        IX: 9,
+        V: 5,
+        IV: 4,
+        I: 1
+    };
+
+    let roman = "";
+
+    for (let i in romanNumerals) {
+        while (num >= romanNumerals[i]) {
+            roman += i;
+            num -= romanNumerals[i];
+        }
+    }
+    return roman;
+}
+
+console.log(convertToRoman(36));  // Outputs: "XXXVI"
+
+
+
+
+
+
+
+
+
+
+
