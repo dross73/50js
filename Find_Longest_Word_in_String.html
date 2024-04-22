@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find the Longest Word in a String</title>
+</head>
+
+<body>
+  <h1>Find the Longest Word in a String</h1>
+  <form id="longestWordForm">
+    <label for="inputText">Enter a sentence:</label>
+    <input type="text" id="inputText" name="inputText">
+    <button type="submit">Check</button>
+  </form>
+  <p id="result"></p>
+  <script>
+
+    //Find the Longest Word in a String
+    function findLongestWord(str) {
+      // Split the string into words and find the length of the longest word
+      return str.split(' ').reduce((max, word) => Math.max(max, word.length), 0);
+    }
+
+    document.getElementById("longestWordForm").addEventListener("submit", function () {
+      event.preventDefault();
+      let inputText = document.getElementById("inputText").value;
+      let longestWord = findLongestWord(inputText);
+      document.getElementById("result").textContent = longestWord;
+    });
+
+  </script>
+</body>
+
+</html>
