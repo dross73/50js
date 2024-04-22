@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title Case a Sentence</title>
+</head>
+<body>
+  <h1>Title Case a Sentence</h1>
+  <form id="titleCaseForm">
+    <input type="text" id="inputText" name="inputText">
+    <button type="Submit">Title Case</button>
+  </form>
+  <p id="output"></p>
+
+  <script>
+    //Title Case a Sentence
+    function titleCase(str) {
+       // Convert the first character of each word to uppercase
+       return str.toLowerCase().replace(/(^|\s)\S/g, (L) => L.toUpperCase());
+    }
+
+    document.getElementById("titleCaseForm").addEventListener("submit", function () {
+      event.preventDefault();
+      let inputText = document.getElementById("inputText").value;
+      let titleCaseSentence = titleCase(inputText);
+      document.getElementById("output").textContent = titleCaseSentence;
+    });
+
+  </script>
+</body>
+</html>
