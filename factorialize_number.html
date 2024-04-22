@@ -4,13 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Factorialize a Number</title>
 </head>
 
 <body>
-
   <h1>Factorialize a Number</h1>
-  
+  <form id="factorialForm">
+    <label for="inputNum">input Number</label><br>
+    <input type="number" id="inputNum">
+    <button type="submit">Factorialize</button>
+  </form>
+  <div id="factorialOutput"></div>
   <script>
     //Factorialize a Number - n!=n×(n−1)×(n−2)×…×3×2×1
     function factorialize(num) {
@@ -18,7 +22,20 @@
       return num * factorialize(num - 1);  // recursive case
     }
 
-    console.log(factorialize(5));  // Outputs: 120
+    document.getElementById("factorialForm").addEventListener("submit", function () {
+      event.preventDefault();
+      //retrieve number entered in form and store in variable inputNum
+      let inputNum = document.getElementById("inputNum").value;
+
+      //calls the factorialize function with the user entered number and stores it in the variable factorialized
+      let factorialized = factorialize(inputNum);
+
+      // Finds the element with the id 'factorialOutput' and sets its text content
+      // to the factorialized number, effectively displaying the result on the page.
+      document.getElementById("factorialOutput").textContent = factorialized;
+     
+
+    });
 
   </script>
 </body>
