@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check for Palindromes</title>
+  <h1>Check for Palindromes</h1>
+</head>
+
+<body>
+  <form>
+    <label for="inputText">Enter a word or phrase:</label>
+    <input type="text" id="inputText" name="inputText">
+    <button type="button" onclick="checkPalindrome()">Check</button>
+    </form>
+    <p id="result"></p>
+  <script>
+    //Check for Palindromes
+    function isPalindrome(str) {
+      // Remove non-alphanumeric characters and convert to lowercase
+      let cleanedStr = str.replace(/[\W_]/g, '').toLowerCase();
+
+      // Check if cleaned string equals its reverse
+      return cleanedStr === cleanedStr.split('').reverse().join('');
+    }
+
+    function checkPalindrome() {
+      event.preventDefault();
+      // Call the checkPalindrome function when the form is submitted
+      document.querySelector('form').addEventListener('submit', checkPalindrome);
+      // Get the input value from the form
+      let input = document.getElementById('inputText').value;
+
+      // Call the isPalindrome function and display the result
+      let result = isPalindrome(input);
+      document.getElementById('result').innerHTML = result ? 'It is a palindrome!' : 'It is not a palindrome.';
+    }
+  </script>
+</body>
+
+</html>
