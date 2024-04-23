@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Return Largest Numbers in Arrays</title>
+</head>
+
+<body>
+  <h1>Return Largest Numbers in Arrays</h1>
+  <form id="largestArrayForm">
+    <p>enter in string of numbers separated by commas, like "1,2,3,4,5".</p>
+    <label for="array1">Array 1:</label>
+    <input type="text" id="array1" name="array1" required><br>
+    <label for="array2">Array 2:</label>
+    <input type="text" id="array2" name="array2" required><br>
+    <label for="array3">Array 3:</label>
+    <input type="text" id="array3" name="array3" required><br>
+    <label for="array4">Array 4:</label>
+    <input type="text" id="array4" name="array4" required><br>
+    <button type="submit" id="findLargestButton">Find Largest</button>
+    <p id="largestArray"></p>
+    <script>
+
+    </script>
+  </form>
+  <script>
+
+    // Return Largest Numbers in Arrays
+    function largestOfFour(arr) {
+      // Map over the array of arrays, finding the maximum of each sub-array
+      return arr.map((group) => Math.max(...group));
+    }
+
+    document.getElementById("largestArrayForm").addEventListener("submit", function () {
+      event.preventDefault();
+      // Get the input values
+      var array1 = document.getElementById("array1").value.split(",").map(Number);
+      var array2 = document.getElementById("array2").value.split(",").map(Number);
+      var array3 = document.getElementById("array3").value.split(",").map(Number);
+      var array4 = document.getElementById("array4").value.split(",").map(Number);
+
+      // Create an array of arrays
+      var arr = [array1, array2, array3, array4];
+
+      //call the largestOfFour function
+      var largestNumbers = largestOfFour(arr);
+
+      //display the results in the largestArray paragraph
+      document.getElementById("largestArray").textContent = largestNumbers.join(", ");
+
+    });
+
+
+  </script>
+</body>
+
+</html>
