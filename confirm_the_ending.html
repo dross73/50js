@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirm the Ending</title>
+</head>
+
+<body>
+  <h1>Confirm the Ending</h1>
+  <form id="endingCheckerForm">
+    <label for="stringInput">Enter String:</label>
+    <input type="text" id="stringInput" name="stringInput" required>
+    <br>
+    <br>
+    <label for="targetInput">Enter Target Substring:</label>
+    <input type="text" id="targetInput" name="targetInput" required>
+    <br>
+    <br>
+    <button type="submit">Check Ending</button>
+  </form>
+  <p id="result"></p>
+  <script>
+    // Define the function to check if the string ends with the target
+    function confirmEnding(str, target) {
+      // Check if the end of the string is the same as the target
+      return str.slice(-target.length) === target;
+    }
+
+   // Event listener for the form submission
+   document.getElementById('endingCheckerForm').addEventListener('submit', function(event)
+  {
+    //Prevent the default form submission
+    event.preventDefault();
+     var str = document.getElementById('stringInput').value;
+     var target = document.getElementById('targetInput').value;
+     var result = confirmEnding(str, target);
+     document.getElementById('result').textContent = result ? 'True' : 'False';
+  });
+  </script>
+</body>
+
+</html>
